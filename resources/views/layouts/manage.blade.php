@@ -8,16 +8,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{config('app.name','Nepalese-in-Europe')}}</title>
+    <title>Nepalese in Europe - MANAGEMENT</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @yield('styles')
 </head>
 <body>
-   @include('_includes.nav.main')
-    <div id="app">
-        @yield('content')
+
+    @include('_includes.nav.main')
+
+    @include('_includes.nav.manage')
+
+    <div class="management-area" id="app">
+      @yield('content')
     </div>
 
     <!-- Scripts -->

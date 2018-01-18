@@ -60,7 +60,7 @@
                 </div>
                 </div>
 
-                    <button class="button is-primary is-outlined is-fullwidth m-t-30">Register</button>
+                    <button class="button is-success is-outlined is-fullwidth m-t-30">Register</button>
                 </form>
                 </div> <!-- End of Card Content-->
             </div>
