@@ -1,18 +1,9 @@
 <nav class="navbar has-shadow" >
   <div class="container">
     <div class="navbar-brand">
-      <a class="navbar-item is-paddingless brand-item" href="{{route('home')}}">
+      <a class="navbar-item is-paddingless" href="{{route('home')}}">
         <img src="{{asset('images/nepaleseineurope-logo.png')}}" alt="DevMarketer logo">
       </a>
-
-      @if (Request::segment(1) == "manage")
-        <a class="navbar-item is-hidden-desktop" id="admin-slideout-button">
-          <span class="icon">
-            <i class="fa fa-arrow-circle-right"></i>
-          </span>
-        </a>
-      @endif
-
       <button class="button navbar-burger">
        <span></span>
        <span></span>
@@ -21,16 +12,16 @@
     </div>
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item is-tab">Feed-Box</a>
-        <a class="navbar-item is-tab">Market</a>
-        <a class="navbar-item is-tab">Discussion</a>
+        <a class="navbar-item is-tab is-active">Learn</a>
+        <a class="navbar-item is-tab">Discuss</a>
+        <a class="navbar-item is-tab">Share</a>
       </div> <!-- end of .navbar-start -->
 
 
       <div class="navbar-end nav-menu" style="overflow: visible">
         @guest
           <a href="{{route('login')}}" class="navbar-item is-tab">Login</a>
-          <a href="{{route('register')}}" class="navbar-item is-tab">Join our Community</a>
+          <a href="{{route('register')}}" class="navbar-item is-tab">Join the Community</a>
         @else
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Hey {{Auth::user()->name}}</a>
@@ -46,7 +37,6 @@
                   <i class="fa fa-fw fa-bell m-r-5"></i>
                 </span>Notifications
               </a>
-
               <a href="{{route('manage.dashboard')}}" class="navbar-item">
                 <span class="icon">
                   <i class="fa fa-fw fa-cog m-r-5"></i>

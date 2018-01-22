@@ -13,9 +13,4 @@ Vue.use(Buefy);
 //   data: {}
 // });
 
-$(document).ready(function() {
-  //  Dropdowns
-  $('.dropdown').hover(function(e) {
-    $(this).toggleClass('is-open')
-  })
-})
+require('./manage')
