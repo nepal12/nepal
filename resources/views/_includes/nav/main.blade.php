@@ -4,6 +4,15 @@
       <a class="navbar-item is-paddingless" href="{{route('home')}}">
         <img src="{{asset('images/nepaleseineurope-logo.png')}}" alt="DevMarketer logo">
       </a>
+
+        @if (Request::segment(1) == "manage")
+            <a class="navbar-item is-hidden-desktop" id="admin-slideout-button">
+            <span class="icon">
+                <i class="fa fa-arrow-circle-right"></i>
+            </span>
+            </a>
+        @endif    
+
       <button class="button navbar-burger">
        <span></span>
        <span></span>
