@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LaraFlash;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        LaraFlash::snackbar("Click to Continue");
+        LaraFlash::add()->content('Info Message')->priority(6)->type('Info');
+        LaraFlash::success("Success Message");
+        LaraFlash::danger("Danger Message");
         return view('home');
     }
 }

@@ -30,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-      return view('manage.users.create');
+      $roles = Role::all();
+      return view('manage.users.create')->withRoles($roles);
     }
 
     /**
@@ -41,7 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate($request, [
+      $this->validateWith([
         'name' => 'required|max:255',
         'email' => 'required|email|unique:users'
       ]);
@@ -64,13 +65,20 @@ class UserController extends Controller
       $user->name = $request->name;
       $user->email = $request->email;
       $user->password = Hash::make($password);
+      $user->save();
 
-      if ($user->save()) {
-        return redirect()->route('users.show', $user->id);
-      } else {
-        Session::flash('danger', 'Sorry a problem occurred while creating this user.');
-        return redirect()->route('users.create');
+      if ($request->roles) {
+        $user->syncRoles(explode(',', $request->roles));
       }
+
+      return redirect()->route('users.show', $user->id);
+
+      // if () {
+      //
+      // } else {
+      //   Session::flash('danger', 'Sorry a problem occurred while creating this user.');
+      //   return redirect()->route('users.create');
+      // }
     }
 
     /**
@@ -93,9 +101,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $roles = Role::all();
-        $user = User::where('id', $id)->with('roles')->first();
-        return view("manage.users.edit")->withUser($user)->withRoles($roles);
+      $roles = Role::all();
+      $user = User::where('id', $id)->with('roles')->first();
+      return view("manage.users.edit")->withUser($user)->withRoles($roles);
     }
 
     /**
@@ -107,7 +115,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $this->validate($request, [
+      $this->validateWith([
         'name' => 'required|max:255',
         'email' => 'required|email|unique:users,email,'.$id
       ]);

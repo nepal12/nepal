@@ -15,8 +15,8 @@
           {{csrf_field()}}
 
           <div class="block">
-            <b-radio v-model="permissionType" name="permission_type" native-value="basic">Basic Permission</b-radio>
-            <b-radio v-model="permissionType" name="permission_type" native-value="crud">CRUD Permission</b-radio>
+                <b-radio v-model="permissionType" name="permission_type" native-value="basic">Basic Permission</b-radio>
+                <b-radio v-model="permissionType" name="permission_type" native-value="crud">CRUD Permission</b-radio>
           </div>
 
           <div class="field" v-if="permissionType == 'basic'">
@@ -49,12 +49,11 @@
 
           <div class="columns" v-if="permissionType == 'crud'">
             <div class="column is-one-quarter">
-              <div class="block">
                 <div class="field">
                   <b-checkbox v-model="crudSelected" native-value="create">Create</b-checkbox>
                 </div>
                 <div class="field">
-                  <b-checkbox v-model="crudSelected" native-value="read">Read</b-checkbox>
+                  <b-checkbox v-model="crudSelected" v-model="crudSelected" native-value="read">Read</b-checkbox>
                 </div>
                 <div class="field">
                   <b-checkbox v-model="crudSelected" native-value="update">Update</b-checkbox>
@@ -62,13 +61,12 @@
                 <div class="field">
                   <b-checkbox v-model="crudSelected" native-value="delete">Delete</b-checkbox>
                 </div>
-              </div>
             </div> <!-- end of .column -->
 
             <input type="hidden" name="crud_selected" :value="crudSelected">
 
             <div class="column">
-              <table class="table" v-if="resource.length >= 3">
+              <table class="table" v-if="resource.length >= 3 && crudSelected.length > 0">
                 <thead>
                   <th>Name</th>
                   <th>Slug</th>
